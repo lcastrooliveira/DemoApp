@@ -4,11 +4,11 @@
 'use strict';
 
 eventsApp.controller("EventController",
-    function EventController($scope,eventData, $anchorScroll) {
+    function EventController($scope,eventData, $anchorScroll, $routeParams) {
 
         $scope.sortorder = 'name';
 
-        eventData.getEvent().$promise.then(
+        eventData.getEvent($routeParams.eventId).$promise.then(
             function(event) {$scope.event = event;console.log(event);},
             function(response) { console.log(response);}
         );
