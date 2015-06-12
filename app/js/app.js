@@ -1,6 +1,6 @@
 'use strict';
 
-var eventsApp = angular.module('eventsApp', ['ngResource'])
+var eventsApp = angular.module('eventsApp', ['ngResource','ngRoute'])
     .config(function($routeProvider,$locationProvider) {
         $routeProvider.when('/newEvent', {
             templateUrl:'templates/NewEvent.html',
@@ -15,11 +15,8 @@ var eventsApp = angular.module('eventsApp', ['ngResource'])
             templateUrl:'templates/EventDetails.html',
             controller: 'EventController',
             resolve: {
-                event: function($q,$route,eventData) {
-                    var deferred = $q.defer();
-                    eventData.getEvent($route.current.pathParams.eventId)
-                        .then(function(event) {deferred.resolve(event);});
-                    return deferred.promise;
+                event: function($route,eventData) {
+                    return eventData.getEvent($route.current.pathParams.eventId);
                 }
             }
         });
@@ -30,5 +27,4 @@ var eventsApp = angular.module('eventsApp', ['ngResource'])
         $routeProvider.otherwise({
             redirectTo:'/events'
         });
-        $locationProvider.html5Mode(true);
     });

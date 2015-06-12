@@ -8,10 +8,10 @@ eventsApp.controller("EventController",
 
         $scope.sortorder = 'name';
 
-        /*eventData.getEvent($routeParams.eventId).$promise.then(
+        eventData.getEvent($routeParams.eventId).$promise.then(
             function(event) {$scope.event = event;console.log(event);},
             function(response) { console.log(response);}
-        );*/
+        );
 
         console.log($route.current.foo);
         console.log($route.current.params.lala);
