@@ -4,7 +4,11 @@
 'use strict'
 eventsApp.controller('GreetingController',
     function GreetingController($scope) {
+        var greetings = ['hello'];
         $scope.sayHello = function() {
-            alert('Hello');
+            alert(greetings.join());
+        }
+        this.addGreeting = function(greeting) {
+            greetings.push(greeting);
         }
     });
